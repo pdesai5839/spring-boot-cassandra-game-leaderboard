@@ -5,13 +5,13 @@ An demo application built using Spring Boot and Cassandra.
 We'll model a hypothetical game leaderboard to play around.
 
 ## Run Cassandra Locally
-We'll go with a stress-free approach! Run the command below to get setup with the latest version of Cassandra:
+Let's go with a stress-free approach! Run the command below to get setup with the latest version of Cassandra:
 
 ```shell
 docker run -p 9042:9042 cassandra:latest
 ```
 
-This will simply launch a single-node cluster.
+This will launch a single-node Cassandra cluster.
 
 ## Data Model
 <img width="468" alt="Screenshot 2024-03-11 at 10 36 41 PM" src="https://github.com/pdesai5839/spring-boot-cassandra-game-leaderboard/assets/143283961/c0644921-00fe-47d9-862a-cb25b7adef5f">
