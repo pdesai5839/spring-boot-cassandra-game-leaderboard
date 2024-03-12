@@ -1,6 +1,6 @@
 # spring-boot-cassandra-game-leaderboard
 
-An demo application built using Spring Data with Cassandra. 
+An demo application built using Spring Boot and Cassandra. 
 
 We'll model a hypothetical game leaderboard to play around.
 
