@@ -1,0 +1,22 @@
+spring:
+  data:
+    cassandra:
+      contact-points: localhost
+      #contact-points:
+      # - 172.17.0.2
+      # - 172.17.0.3
+      # - 172.17.0.4
+      port: 9042
+      keyspace-name: games
+      #username: cassandra
+      #password: cassandra
+      #schema-act: create_if_not_exists
+
+springdoc:
+  version: 1.0.0
+  swagger-ui:
+    path: /swagger-ui-custom.html
+
+#logging:
+#  level:
+#    root: DEBUG
