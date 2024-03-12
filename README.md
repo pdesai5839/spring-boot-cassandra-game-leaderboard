@@ -40,3 +40,9 @@ As mentioned above, if the keyspace and table don't exist, they will be created 
 2024-03-12 05:45:09.403 [main] DEBUG o.s.d.cassandra.core.cql.CqlTemplate - Executing CQL statement [CREATE TABLE IF NOT EXISTS leaderboards (gameid text, userid text, gameinfo frozen<gameinfo>, score int, teamname text, PRIMARY KEY (gameid, userid)) WITH CLUSTERING ORDER BY (userid DESC);]
 2024-03-12 06:00:32.734 [main] DEBUG o.s.d.cassandra.core.cql.CqlTemplate - Executing prepared statement [INSERT INTO leaderboards (gameid,userid,gameinfo,score,teamname) VALUES (?,?,?,?,?)]
 ```
+
+## OpenAPI
+
+See all the available endpoints by going to http://localhost:8080/swagger-ui-custom.html
+<img width="717" alt="Screenshot 2024-03-11 at 11 34 18 PM" src="https://github.com/pdesai5839/spring-boot-cassandra-game-leaderboard/assets/143283961/978f0000-16a8-495e-9d3a-9adf9fb967ec">
+
