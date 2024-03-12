@@ -26,3 +26,9 @@ Cluster Key = userId
 ```
 
 You don't have to create any of these manually. Code will create and populate Cassandra with sample data if the keyspace/table doesn't exist at start up time.
+
+## Start The App
+
+```shell
+mvn spring-boot:run
+```
