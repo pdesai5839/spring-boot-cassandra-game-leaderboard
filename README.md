@@ -34,6 +34,7 @@ mvn spring-boot:run
 ```
 
 As mentioned above, if the keyspace and table don't exist, they will be created and populated with sample data.
+
 ```log
 2024-03-12 05:45:09.157 [main] INFO  o.s.d.c.config.CqlSessionFactoryBean - Executing CQL [CREATE KEYSPACE IF NOT EXISTS games WITH durable_writes = true AND replication = { 'class' : 'SimpleStrategy', 'replication_factor' : 3 };]
 2024-03-12 05:45:09.395 [main] DEBUG o.s.d.cassandra.core.cql.CqlTemplate - Executing CQL statement [CREATE TYPE IF NOT EXISTS gameinfo (endtime timestamp, gamename text, maxplayersallowed int, starttime timestamp);]
