@@ -31,6 +31,11 @@ public class GameLeaderboardServiceImpl implements GameLeaderboardService {
     }
     
     @Override
+    public List<GameLeaderboard> findByTeamName(String teamName) {
+        return repository.findByTeamName(teamName);
+    }
+    
+    @Override
     public GameLeaderboard findById(LeaderboardKey id) {
         return repository.findById(id)
             .orElse(GameLeaderboard.builder().build());
@@ -50,5 +55,4 @@ public class GameLeaderboardServiceImpl implements GameLeaderboardService {
     public void delete(LeaderboardKey id) {
         repository.findById(id).ifPresent(leaderboard -> repository.delete(leaderboard));
     }
-
 }

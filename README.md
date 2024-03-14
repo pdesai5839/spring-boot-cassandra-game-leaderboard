@@ -13,6 +13,30 @@ docker run -p 9042:9042 cassandra:latest
 
 This will launch a single-node Cassandra cluster.
 
+## Open cqlsh terminal
+From a terminal, run the following:
+
+```shell
+docker ps
+```
+
+Copy the value in the `NAMES` column for the cassandra container. Now run the following, substituting the `NAMES` value:
+
+```shell
+docker exec -it <NAMES> cqlsh
+```
+
+If all goes well, you'll have `cqlsh` available to do your bidding:
+
+```shell
+docker exec -it funny_northcutt cqlsh
+
+Connected to Test Cluster at 127.0.0.1:9042
+[cqlsh 6.1.0 | Cassandra 4.1.4 | CQL spec 3.4.6 | Native protocol v5]
+Use HELP for help.
+cqlsh>
+```
+
 ## Data Model
 <img width="468" alt="Screenshot 2024-03-11 at 10 36 41 PM" src="https://github.com/pdesai5839/spring-boot-cassandra-game-leaderboard/assets/143283961/c0644921-00fe-47d9-862a-cb25b7adef5f">
 
@@ -44,6 +68,37 @@ As mentioned above, if the keyspace and table don't exist, they will be created 
 
 ## OpenAPI
 
-See all the available endpoints by going to http://localhost:8080/swagger-ui-custom.html
+See all the available endpoints by going to [OpenAPI UI](http://localhost:8080/swagger-ui-custom.html).
 <img width="717" alt="Screenshot 2024-03-11 at 11 34 18 PM" src="https://github.com/pdesai5839/spring-boot-cassandra-game-leaderboard/assets/143283961/978f0000-16a8-495e-9d3a-9adf9fb967ec">
+
+As you can see, we have the basic CRUD APIs available to try out. You can do so directly from the OpenAPI UI or use `curl`.
+
+### Insert New Leaderboard
+Run the following from a terminal to insert a new record:
+
+```shell
+curl --location 'http://localhost:8080/leaderboards/' \
+--header 'Content-Type: application/json' \
+--data '{
+        "id": {
+            "gameId": "rocket_league-APAC-2024-02-27",
+            "userId": "ChatterBot"
+        },
+        "score": 66,
+        "teamName": "Rapt0rs",
+        "gameInfo": {
+            "gameName": "Rocket League",
+            "startTime": "2024-02-27T15:00:00",
+            "endTime": "2024-02-27T15:30:00",
+            "maxPlayersAllowed": 50
+        }
+    }'
+```
+
+And verify that it was indeed saved into Cassandra by running:
+
+```shell
+curl --location --request GET 'http://localhost:8080/leaderboards/rocket_league-APAC-2024-02-27/ChatterBot' \
+--header 'Content-Type: application/json'
+```
 

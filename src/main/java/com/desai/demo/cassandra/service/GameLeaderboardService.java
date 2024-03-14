@@ -11,6 +11,8 @@ public interface GameLeaderboardService {
     List<GameLeaderboard> findAll();
 
     GameLeaderboard findById(LeaderboardKey id);
+    
+    List<GameLeaderboard> findByTeamName(String teamName);
 
     GameLeaderboard save(GameLeaderboard gameLeaderboard);
 

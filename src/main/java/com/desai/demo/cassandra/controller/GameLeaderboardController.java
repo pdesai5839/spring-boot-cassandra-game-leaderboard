@@ -89,6 +89,26 @@ public class GameLeaderboardController {
         return ResponseEntity.ok().body(list);
     }
     
+    @Operation(summary = "Get a Leaderboard by its id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Found the Leaderboard",
+                    content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = GameLeaderboard.class))}),
+            @ApiResponse(responseCode = "400", description = "Invalid id supplied", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Leaderboard not found", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+    })
+    @GetMapping("/{teamName}")
+    public ResponseEntity<List<GameLeaderboard>> findByTeamName(@PathVariable String teamName) {
+        log.info("*** Getting Leaderboard from DB using tean name: {}", teamName);
+        List<GameLeaderboard> gameLeaderboard = gameLeaderboardService.findByTeamName(teamName);
+
+        if (gameLeaderboard.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        log.info("Found Leaderboard: {}", gameLeaderboard);
+        return ResponseEntity.ok().body(gameLeaderboard);
+    }
+    
     @Operation(summary = "Create Leaderboard ")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Save Leaderboard",
